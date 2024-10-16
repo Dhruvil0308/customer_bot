@@ -18,7 +18,7 @@ async def get_prod_det(user:convo,db:Database=Depends(get_db)):
     # Convert MongoDB documents (which are BSON) into JSON serializable objects
     return {"conversations": [dict(item) for item in result]}
 
-@app.get("/customer_response")
+@app.post("/customer_response")
 async def post_cust_response(user:convo_user,db:Database=Depends(get_db)):
     return convo_user(db,user)
 
