@@ -1,6 +1,6 @@
 from database import get_db
 from pymongo.database import Database
-from schemas import convo
+from schemas import convo,convo_user
 from typing import Dict
 def conversation(db:Database,user:convo)->Dict:
     result={
@@ -12,4 +12,16 @@ def conversation(db:Database,user:convo)->Dict:
         "ID":str(res.inserted_id),
         "user_input":user.user_input,
         "bot_input":user.bot_input
+    }
+
+def conversation_user(db:Database,user:convo_user):
+    result={
+        "user_input":user.user_input,
+        "bot_input":user.bot_input
+    }
+    res=db["user_convo"].insert_one(result)
+    return{
+        "user_input":user.user_input,
+        "bot_input":user.bot_input,
+        "ID":str(res.inserted_id)
     }
