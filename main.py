@@ -1,5 +1,5 @@
 from schemas import convo,convo_user
-from model import conversation
+from model import conversation,conversation_user
 from pymongo.database import Database
 from fastapi import FastAPI,Depends
 from database import get_db
@@ -20,7 +20,7 @@ async def get_prod_det(user:convo,db:Database=Depends(get_db)):
 
 @app.post("/customer_response")
 async def post_cust_response(user:convo_user,db:Database=Depends(get_db)):
-    return convo_user(db,user)
+    return conversation_user(db,user)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8000))  # Get port from env or use 8000 as default
