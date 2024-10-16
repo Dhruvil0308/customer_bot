@@ -16,12 +16,10 @@ def conversation(db:Database,user:convo)->Dict:
 
 def conversation_user(db:Database,user:convo_user):
     result={
-        "user_input":user.user_input,
-        "bot_input":user.bot_input
+       "conversation":user.conversation
     }
     res=db["user_convo"].insert_one(result)
     return{
-        "user_input":user.user_input,
-        "bot_input":user.bot_input,
-        "ID":str(res.inserted_id)
+       "conversation":user.conversation,
+       "ID":str(res.inserted_id)
     }
