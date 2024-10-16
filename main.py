@@ -3,6 +3,7 @@ from model import conversation
 from pymongo.database import Database
 from fastapi import FastAPI,Depends
 from database import get_db
+import os
 import uvicorn
 
 app=FastAPI()
